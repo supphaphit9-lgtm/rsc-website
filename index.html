@@ -1,219 +1,649 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติหน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์ (RSC)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์ | Royal Security Command</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt & Sarabun -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#030816',
+                            800: '#0a1128',
+                            700: '#101d42',
+                            600: '#1c2d5a',
+                        },
+                        gold: {
+                            100: '#fff5d6',
+                            300: '#f8d672',
+                            400: '#e5c158',
+                            500: '#d4af37',
+                            600: '#aa820a',
+                            700: '#856404',
+                        },
+                        royal: {
+                            blue: '#0052cc',
+                            light: '#1890ff',
+                        }
+                    },
+                    fontFamily: {
+                        prompt: ['Prompt', 'sans-serif'],
+                        sarabun: ['Sarabun', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'shine': 'shine 2s infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(212, 175, 55, 0.3), 0 0 30px rgba(0, 82, 204, 0.2)' },
+                            '100%': { boxShadow: '0 0 35px rgba(212, 175, 55, 0.7), 0 0 60px rgba(0, 82, 204, 0.5)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        shine: {
+                            '100%': { left: '125%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg-deep: #070b14;
-            --bg-card: rgba(15, 23, 42, 0.75);
-            --gold-primary: #f59e0b;
-            --gold-light: #fef3c7;
-            --gold-glow: rgba(245, 158, 11, 0.4);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Prompt', sans-serif;
-        }
-
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            min-height: 100vh;
+            font-family: 'Prompt', sans-serif;
+            background-color: #030816;
+            color: #e2e8f0;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(30, 58, 138, 0.3) 0%, transparent 60%),
-                radial-gradient(circle at 10% 90%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
         }
 
-        header {
-            text-align: center;
-            padding: 80px 20px 50px 20px;
-            position: relative;
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), transparent);
-            border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030816;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f8d672;
         }
 
-        .emblem-wrapper {
-            position: relative;
-            width: 170px;
-            height: 170px;
-            margin: 0 auto 25px auto;
-        }
-
-        .emblem-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: -8px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--gold-primary), transparent, var(--gold-primary));
-            animation: rotateGlow 6s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes rotateGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .emblem-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 4px solid var(--gold-primary);
-            box-shadow: 0 0 30px var(--gold-glow);
-            overflow: hidden;
-            background: #000;
-            z-index: 1;
-        }
-
-        .emblem-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            color: var(--gold-primary);
-            margin-bottom: 10px;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
-        }
-
-        h2 {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 35px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(16, 29, 66, 0.55);
             backdrop-filter: blur(12px);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.25);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(245, 158, 11, 0.5);
+        /* Gold Gradient Text */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #FFF5D6 0%, #D4AF37 50%, #AA820A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .card h3 {
-            color: var(--gold-primary);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-            padding-bottom: 12px;
+        /* Blue-Gold Metallic Gradient Text */
+        .text-royal-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a5c7ff 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        p, li {
-            margin-bottom: 18px;
-            color: #cbd5e1;
-            font-size: 1.15rem;
-            line-height: 1.9;
+        /* Tactical Grid Background */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
         }
 
-        ul {
-            padding-left: 25px;
-        }
-
-        li strong {
-            color: var(--gold-light);
-        }
-
-        .quote-box {
-            text-align: center;
-            font-style: italic;
-            color: var(--gold-light);
-            font-size: 1.35rem;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(15, 23, 42, 0.6));
-            padding: 30px;
-            border-left: 5px solid var(--gold-primary);
-            border-radius: 0 12px 12px 0;
-            margin: 30px 0;
-            box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.05);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: #04060b;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(245, 158, 11, 0.2);
-            font-size: 0.95rem;
-            margin-top: 80px;
-        }
-
-        footer p {
-            margin-bottom: 5px;
+        /* Particle Canvas */
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
     </style>
 </head>
-<body>
+<body class="bg-navy-900 bg-grid-pattern antialiased selection:bg-gold-500 selection:text-navy-900">
 
-    <header>
-        <div class="emblem-wrapper">
-            <div class="emblem-container">
-                <img src="RSC.png" alt="ตราหน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์">
-            </div>
-        </div>
-        <h1>หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์</h1>
-        <h2>ROYAL SECURITY COMMAND (RSC)</h2>
-    </header>
-
-    <div class="container">
-        
-        <div class="card">
-            <h3>📜 บทนำและความสำคัญ</h3>
-            <p><strong>หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์ (นถปภ.รอ.)</strong> เป็นส่วนราชการในพระองค์ที่มีประวัติความเป็นมาอันทรงเกียรติยศและศักดิ์ศรี ปฏิบัติภารกิจขึ้นตรงต่อองค์พระมหากษัตริย์ มีหน้าที่หลักในการวางแผน อำนวยการ และปฏิบัติภารกิจเกี่ยวกับการถวายความปลอดภัยแด่องค์พระมหากษัตริย์ พระราชินี พระรัชทายาท และพระบรมวงศานุวงศ์ทุกพระองค์อย่างใกล้ชิดและสมบูรณ์แบบที่สุด</p>
-        </div>
-
-        <div class="card">
-            <h3>🛡️ ภารกิจหลักของหน่วย</h3>
-            <ul>
-                <li><strong>การถวายความปลอดภัย :</strong> ถวายความปลอดภัยทั้งในและนอกราชอาณาจักร รวมถึงการอารักขาพระราชฐานและสถานที่สำคัญทุกแห่งด้วยความเฉียบคมและแม่นยำ</li>
-                <li><strong>การถวายพระเกียรติ :</strong> จัดตั้งกองเกียรติยศและปฏิบัติหน้าที่ในพระราชพิธีและรัฐพิธีสำคัญด้วยความสง่างามตามแบบแผนราชสำนัก</li>
-                <li><strong>การบริหารราชการในพระองค์ :</strong> บูรณาการกำลังพล ยุทโธปกรณ์ และแผนยุทธการ ให้มีความพร้อมสูงสุดในการปฏิบัติภารกิจพิเศษระดับประเทศ</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>⭐ คติพจน์และปณิธานประจำหน่วย</h3>
-            <div class="quote-box">
-                "ถวายความปลอดภัยด้วยชีวิต ถวายความจงรักภักดีด้วยหัวใจ"
-            </div>
-        </div>
-
+    <!-- Canvas background for particles -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <canvas id="particles-canvas"></canvas>
     </div>
 
-    <footer>
-        <p>กองบัญชาการ หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์ (RSC)</p>
-        <p>สงวนลิขสิทธิ์ © 2026</p>
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 glass-card border-b border-gold-500/20 bg-navy-900/80 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo & Name -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="relative w-12 h-12 flex items-center justify-center rounded-full bg-navy-800 border border-gold-500/40 p-1 shadow-lg">
+                        <img src="RSC.png" alt="RSC Emblem" class="w-full h-full object-contain rounded-full" onerror="this.src='https://placehold.co/200x200/0a1128/d4af37?text=RSC'">
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold text-gold-gradient tracking-wide block leading-tight">นถปภ.รอ.</span>
+                        <span class="text-xs text-slate-300 tracking-wider font-light">ROYAL SECURITY COMMAND</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="text-sm font-medium text-slate-200 hover:text-gold-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-house text-gold-500 text-xs"></i> หน้าแรก</a>
+                    <a href="#history" class="text-sm font-medium text-slate-200 hover:text-gold-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-book-bookmark text-gold-500 text-xs"></i> ประวัติความเป็นมา</a>
+                    <a href="#structure" class="text-sm font-medium text-slate-200 hover:text-gold-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-sitemap text-gold-500 text-xs"></i> โครงสร้างองค์กร</a>
+                    <a href="#missions" class="text-sm font-medium text-slate-200 hover:text-gold-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-shield-halved text-gold-500 text-xs"></i> ภารกิจหลัก</a>
+                    <a href="#motto" class="text-sm font-medium text-slate-200 hover:text-gold-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-award text-gold-500 text-xs"></i> ปณิธาน</a>
+                </div>
+
+                <!-- Unit Badge Tag -->
+                <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-navy-800/80 border border-gold-500/30 text-xs text-gold-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>สังกัด: [⚡] เกิดใหม่ในรั้วทหารไทย</span>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-gold-400 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-gold-500/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">หน้าแรก</a>
+            <a href="#history" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">ประวัติความเป็นมา</a>
+            <a href="#structure" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">โครงสร้างองค์กร</a>
+            <a href="#missions" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">ภารกิจหลัก</a>
+            <a href="#motto" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-navy-800 hover:text-gold-400">ปณิธาน</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-[90vh] flex items-center justify-center pt-10 pb-20 overflow-hidden z-10">
+        <!-- Radial Gradient Lights -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-royal-blue/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[350px] h-[350px] bg-gold-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- Unit Tag -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-800/90 border border-gold-500/40 text-gold-300 text-xs md:text-sm font-medium mb-6 shadow-lg shadow-black/40">
+                <i class="fa-solid fa-bolt text-yellow-400 animate-bounce"></i>
+                <span>แมพ [⚡] เกิดใหม่ในรั้วทหารไทย</span>
+            </div>
+
+            <!-- Emblem with Glowing Aura -->
+            <div class="relative w-48 h-48 md:w-60 md:h-60 mx-auto mb-8 animate-float">
+                <div class="absolute inset-0 rounded-full animate-pulse-glow bg-gradient-to-tr from-gold-600/30 via-royal-blue/20 to-gold-400/30"></div>
+                <div class="relative w-full h-full rounded-full p-2 bg-navy-900 border-2 border-gold-500/60 shadow-2xl flex items-center justify-center overflow-hidden">
+                    <img src="RSC.png" alt="Royal Security Command Emblem" class="w-full h-full object-contain rounded-full transform hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x400/0a1128/d4af37?text=RSC+Emblem'">
+                </div>
+            </div>
+
+            <!-- Title & Description -->
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-gold-gradient tracking-tight mb-4 leading-tight">
+                หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์
+            </h1>
+            <p class="text-lg sm:text-2xl font-light text-royal-gradient tracking-widest mb-6 uppercase">
+                ROYAL SECURITY COMMAND
+            </p>
+            <p class="max-w-3xl mx-auto text-slate-300 text-sm sm:text-base font-sarabun leading-relaxed mb-10">
+                หน่วยงานราชการในพระองค์ที่มีเกียรติยศสูงสุด ปฏิบัติภารกิจการถวายความปลอดภัย ถวายอารักขา ถวายพระเกียรติ แด่องค์พระมหากษัตริย์ พระราชินี และพระบรมวงศานุวงศ์ ด้วยความจงรักภักดีและวินัยอันเข้มงวดสูงสุด
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#history" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-navy-900 font-bold hover:brightness-110 transition-all duration-300 shadow-lg shadow-gold-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-scroll"></i>
+                    <span>ศึกษาประวัติหน่วย</span>
+                </a>
+                <a href="#structure" class="w-full sm:w-auto px-8 py-3.5 rounded-lg glass-card text-gold-300 font-semibold hover:bg-gold-500/10 hover:border-gold-400 transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-sitemap"></i>
+                    <span>โครงสร้างการบริหาร</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section (ประวัติความเป็นมา) -->
+    <section id="history" class="py-20 relative z-10 border-t border-gold-500/10 bg-navy-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-gold-500 text-sm font-semibold tracking-widest uppercase block mb-2"><i class="fa-solid fa-landmark mr-2"></i>HISTORY & ORIGIN</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gold-gradient">ประวัติความเป็นมาและวิวัฒนาการ</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-4"></div>
+            </div>
+
+            <!-- Detailed History Narrative Card -->
+            <div class="glass-card p-6 sm:p-10 rounded-2xl mb-12 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-royal-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="flex flex-col lg:flex-row items-center gap-8">
+                    <div class="w-full lg:w-1/3 flex justify-center">
+                        <div class="relative p-3 rounded-2xl bg-navy-900 border border-gold-500/30 shadow-2xl max-w-[260px]">
+                            <img src="RSC.png" alt="RSC Insignia" class="w-full h-auto object-contain rounded-xl" onerror="this.src='https://placehold.co/300x300/0a1128/d4af37?text=RSC'">
+                            <div class="text-center mt-3 pt-2 border-t border-gold-500/20">
+                                <span class="text-xs text-gold-400 font-medium">ตราสัญลักษณ์ประจำหน่วย นถปภ.รอ.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/3 space-y-4 font-sarabun text-slate-300 leading-relaxed">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gold-300 font-prompt border-b border-gold-500/20 pb-3">
+                            ต้นกำเนิดและวิวัฒนาการแห่งเกียรติยศ
+                        </h3>
+                        <p class="indent-8">
+                            การถวายความปลอดภัยและการถวายอารักขาแด่องค์พระมหากษัตริย์และพระบรมวงศานุวงศ์ ถือเป็นภารกิจที่มีความสำคัญสูงสุดและมีประวัติศาสตร์สืบทอดมาอย่างยาวนานนับตั้งแต่อดีต เดิมทีภารกิจอันทรงเกียรตินี้กระจายอยู่ในความดูแลของหลายหน่วยงาน เช่น กรมราชทหารเสือ กรมราชหัตถเลขา และกองตำรวจราชสำนัก
+                        </p>
+                        <p class="indent-8">
+                            ต่อมาเพื่อให้การปฏิบัติงานด้านการถวายความปลอดภัย การรักษาความสงบเรียบร้อยภายในพระราชฐาน และการจัดพระราชพิธีถวายพระเกียรติ มีความเป็นเอกภาพ มีความรวดเร็ว และมีประสิทธิภาพสูงสุดตามมาตรฐานยุทธวิธีระดับสากล จึงได้มีการยกระดับและจัดตั้ง **"หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์" (Royal Security Command)** ขึ้นเป็นส่วนราชการในพระองค์โดยตรง
+                        </p>
+                        <p class="indent-8">
+                            หน่วยงานนี้ยึดถือระเบียบ วินัย และหลักยุทธวิธีอันเคร่งครัด เจ้าหน้าที่ทุกคนผ่านการคัดเลือกและการฝึกอบรมอย่างเข้มข้น ทั้งในด้านการยิงปืนยุทธวิธี การถวายอารักขาบุคคลสำคัญ (VVIP Protection) การอารักขาขบวนเสด็จ และการต่อต้านการก่อการร้าย เพื่อทำหน้าที่เป็นเกราะแก้วปกป้องสถาบันพระมหากษัตริย์ด้วยชีวิต
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Timeline Steps -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Timeline 1 -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-l-gold-500 relative group hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-gold-400 text-3xl font-bold font-prompt mb-2 flex items-center justify-between">
+                        <span>ยุคก่อตั้ง</span>
+                        <i class="fa-solid fa-flag text-gold-500/30 text-2xl group-hover:text-gold-500 transition-colors"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2 font-prompt">การรวบรวมกำลังพลถวายอารักขา</h4>
+                    <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                        เริ่มต้นจากการจัดตั้งกองกำลังทหารมหาดเล็กและกำลังพลคัดสรรพิเศษ เพื่อดูแลความปลอดภัยรอบเขตพระราชฐานชั้นในและชั้นนอก
+                    </p>
+                </div>
+
+                <!-- Timeline 2 -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-l-royal-blue relative group hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-royal-light text-3xl font-bold font-prompt mb-2 flex items-center justify-between">
+                        <span>การยกระดับ</span>
+                        <i class="fa-solid fa-layer-group text-royal-blue/30 text-2xl group-hover:text-royal-light transition-colors"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2 font-prompt">สถาปนาโครงสร้าง นถปภ.รอ.</h4>
+                    <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                        ปรับปรุงโครงสร้างการบริหารงานใหม่ รวมหน่วยปฏิบัติการพิเศษ กรมราชโองการ และกองทหารมหาดเล็กฯ เข้าด้วยกันอย่างเป็นระบบ
+                    </p>
+                </div>
+
+                <!-- Timeline 3 -->
+                <div class="glass-card p-6 rounded-xl border-l-4 border-l-emerald-500 relative group hover:-translate-y-1 transition-all duration-300">
+                    <div class="text-emerald-400 text-3xl font-bold font-prompt mb-2 flex items-center justify-between">
+                        <span>ปัจจุบัน</span>
+                        <i class="fa-solid fa-shield-cat text-emerald-500/30 text-2xl group-hover:text-emerald-400 transition-colors"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-white mb-2 font-prompt">มาตรฐานยุทธวิธีระดับสูง</h4>
+                    <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                        พร้อมปฏิบัติภารกิจถวายความปลอดภัย 24 ชั่วโมง ด้วยเทคโนโลยี อุปกรณ์ทันสมัย และระบบควบคุมสั่งการที่แม่นยำ
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organizational Structure Section (โครงสร้างองค์กร) -->
+    <section id="structure" class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-gold-500 text-sm font-semibold tracking-widest uppercase block mb-2"><i class="fa-solid fa-sitemap mr-2"></i>ORGANIZATION STRUCTURE</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gold-gradient">โครงสร้างและหน่วยงานในสังกัด</h2>
+                <p class="text-slate-400 text-sm mt-2 font-sarabun">แบ่งส่วนราชการเพื่อการควบคุม สั่งการ และปฏิบัติภารกิจได้อย่างมีประสิทธิภาพสูงสุด</p>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-4"></div>
+            </div>
+
+            <!-- Structure Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-6 rounded-2xl relative flex flex-col justify-between group hover:border-gold-400 transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-person-military-rifle"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 font-prompt">กองบัญชาการทหารมหาดเล็กราชวัลลภรักษาพระองค์</h3>
+                        <p class="text-xs text-gold-300 font-mono mb-3">ทม.รอ. / King's Guard</p>
+                        <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                            รับผิดชอบการจัดตั้งกองทหารเกียรติยศ การตั้งแถวรับเสด็จ การรักษาการณ์ ณ พระบรมมหาราชวัง และพระราชฐานทั่วประเทศ
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gold-500/10 flex items-center justify-between text-xs text-slate-400">
+                        <span>สายงาน: ปฏิบัติการภาคสนาม</span>
+                        <i class="fa-solid fa-chevron-right text-gold-500"></i>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-6 rounded-2xl relative flex flex-col justify-between group hover:border-gold-400 transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-royal-blue/20 border border-royal-light/30 flex items-center justify-center text-royal-light text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 font-prompt">สำนักงานนายทหารปฏิบัติการพิเศษ</h3>
+                        <p class="text-xs text-royal-light font-mono mb-3">นปพ.รอ. / Special Ops</p>
+                        <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                            หน่วยปฏิบัติการอารักขาระยะชิด (Close Protection) การวางกำลังต่อต้านซุ่มยิง และชุดเคลื่อนที่เร็วถวายความปลอดภัย
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gold-500/10 flex items-center justify-between text-xs text-slate-400">
+                        <span>สายงาน: ยุทธวิธีพิเศษ</span>
+                        <i class="fa-solid fa-chevron-right text-gold-500"></i>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-6 rounded-2xl relative flex flex-col justify-between group hover:border-gold-400 transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-scroll"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 font-prompt">กรมราชโองการ</h3>
+                        <p class="text-xs text-purple-300 font-mono mb-3">Royal Command Dept.</p>
+                        <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                            ดูแลงานหนังสือราชการ งานพระราชพิธี พิธีการ กฎระเบียบ ข้อบังคับ และการประสานงานส่วนราชการในพระองค์
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gold-500/10 flex items-center justify-between text-xs text-slate-400">
+                        <span>สายงาน: บริหารและสารบรรณ</span>
+                        <i class="fa-solid fa-chevron-right text-gold-500"></i>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card p-6 rounded-2xl relative flex flex-col justify-between group hover:border-gold-400 transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-tower-observation"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 font-prompt">กองอำนวยการถวายความปลอดภัย</h3>
+                        <p class="text-xs text-emerald-300 font-mono mb-3">กอ.ถปภ. / Security Ops Center</p>
+                        <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                            ศูนย์สั่งการข่าวกรอง วางแผนยุทธศาสตร์เส้นทางเสด็จ ประสานงานกองทัพและตำรวจเพื่อเคลียร์พื้นที่ยุทธศาสตร์
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gold-500/10 flex items-center justify-between text-xs text-slate-400">
+                        <span>สายงาน: ข่าวกรองและวางแผน</span>
+                        <i class="fa-solid fa-chevron-right text-gold-500"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Missions Section (ภารกิจหลัก) -->
+    <section id="missions" class="py-20 relative z-10 border-t border-gold-500/10 bg-navy-800/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-gold-500 text-sm font-semibold tracking-widest uppercase block mb-2"><i class="fa-solid fa-crosshairs mr-2"></i>PRIMARY MISSIONS</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gold-gradient">ภารกิจหลักแห่งเกียรติยศ</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mission 1 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-gold-500/5 rounded-bl-full pointer-events-none"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xl shrink-0">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-prompt group-hover:text-gold-300 transition-colors">การถวายความปลอดภัยขั้นสูงสุด</h3>
+                            <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                                วางแผน วางกำลัง และถวายการอารักขาแด่องค์พระมหากษัตริย์ พระราชินี พระรัชทายาท และพระบรมวงศานุวงศ์ ตลอด 24 ชั่วโมง ทั้งในและนอกพื้นที่
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 2 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-gold-500/5 rounded-bl-full pointer-events-none"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xl shrink-0">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-prompt group-hover:text-gold-300 transition-colors">การถวายพระเกียรติในงานพิธี</h3>
+                            <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                                จัดตั้งกองทหารเกียรติยศ นำขบวนเสด็จ และดำเนินการในพระราชพิธีสำคัญต่างๆ ให้เป็นไปตามราชประเพณีอันสง่างามและสมพระเกียรติ
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 3 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-gold-500/5 rounded-bl-full pointer-events-none"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xl shrink-0">
+                            <i class="fa-solid fa-building-shield"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-prompt group-hover:text-gold-300 transition-colors">การรักษาการณ์พระราชฐาน</h3>
+                            <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                                ควบคุม ตรวจสอบ และรักษาความปลอดภัยอย่างเข้มงวด ณ เขตพระราชฐาน พระตำหนัก และสถานที่สำคัญทางยุทธศาสตร์
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 4 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-gold-500/5 rounded-bl-full pointer-events-none"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xl shrink-0">
+                            <i class="fa-solid fa-gun"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-prompt group-hover:text-gold-300 transition-colors">การยิงปืนยุทธวิธีและอารักขา</h3>
+                            <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                                ฝึกซ้อมทักษะการใช้อาวุธ การยิงปืนฉับพลัน การขับรถอารักขาขบวนเสด็จ และเทคนิคต่อต้านซุ่มยิงอย่างสม่ำเสมอ
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 5 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-gold-500/5 rounded-bl-full pointer-events-none"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xl shrink-0">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-prompt group-hover:text-gold-300 transition-colors">การข่าวกรองและความอุตสาหะ</h3>
+                            <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                                สืบสวน ประเมินสถานการณ์ความเสี่ยง ค้นหาสิ่งผิดปกติและป้องกันภัยคุกคามล่วงหน้าก่อนเกิดเหตุการณ์ทุกรูปแบบ
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 6 -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-gold-500/5 rounded-bl-full pointer-events-none"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 rounded-xl bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xl shrink-0">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-prompt group-hover:text-gold-300 transition-colors">การฝึกอบรมวินัยและระเบียบ</h3>
+                            <p class="text-sm font-sarabun text-slate-300 leading-relaxed">
+                                ธำรงไว้ซึ่งระเบียบวินัยทหารอย่างสูงสุด ฝึกฝนร่างกาย และสร้างสรรค์บุคลากรที่มีความจงรักภักดีอย่างแท้จริง
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motto & Honor Code Section (คติพจน์และปณิธาน) -->
+    <section id="motto" class="py-20 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="glass-card p-8 sm:p-14 rounded-3xl border-2 border-gold-500/40 relative overflow-hidden shadow-2xl">
+                <!-- Decorative Glows -->
+                <div class="absolute -top-20 -left-20 w-40 h-40 bg-gold-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-royal-blue/30 rounded-full blur-2xl pointer-events-none"></div>
+
+                <i class="fa-solid fa-quote-left text-4xl text-gold-500/40 mb-6 block mx-auto"></i>
+
+                <span class="text-gold-400 text-sm font-semibold tracking-widest uppercase block mb-3">MOTTO & HONOR CODE</span>
+                
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-gold-gradient leading-tight mb-6 font-prompt">
+                    "ถวายความปลอดภัยด้วยชีวิต ถวายความจงรักภักดีด้วยหัวใจ"
+                </h2>
+
+                <p class="text-slate-300 text-base sm:text-lg font-sarabun max-w-2xl mx-auto leading-relaxed mb-8">
+                    คำสัตย์ปฏิญาณและปณิธานอันแน่วแน่ของกำลังพลทุกนายสังกัด หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์ ที่พร้อมปฏิบัติภารกิจอันทรงเกียรตินี้ด้วยความเสียสละสูงสุด
+                </p>
+
+                <div class="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-navy-900/90 border border-gold-500/50 text-gold-300 text-sm font-medium">
+                    <img src="RSC.png" alt="RSC Seal" class="w-6 h-6 object-contain rounded-full" onerror="this.src='https://placehold.co/100x100/0a1128/d4af37?text=RSC'">
+                    <span>หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-gold-500/20 bg-navy-900/90 relative z-10 text-slate-400 text-xs font-sarabun">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="RSC.png" alt="RSC Footer Logo" class="w-8 h-8 object-contain rounded-full" onerror="this.src='https://placehold.co/100x100/0a1128/d4af37?text=RSC'">
+                <div>
+                    <p class="font-bold text-slate-200 font-prompt">หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์</p>
+                    <p class="text-gold-400/80">ROYAL SECURITY COMMAND</p>
+                </div>
+            </div>
+
+            <div class="text-center md:text-right">
+                <p>สังกัดแมพ: <span class="text-gold-300">[⚡] เกิดใหม่ในรั้วทหารไทย</span></p>
+                <p class="mt-1 text-slate-500">© 2026 Royal Security Command. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Interactive Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Background Particles Effect
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        let w, h;
+
+        function resizeCanvas() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.color = Math.random() > 0.4 ? 'rgba(212, 175, 55, ' + (Math.random() * 0.4 + 0.1) + ')' : 'rgba(24, 144, 255, ' + (Math.random() * 0.3 + 0.1) + ')';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > w) this.x = 0;
+                else if (this.x < 0) this.x = w;
+
+                if (this.y > h) this.y = 0;
+                else if (this.y < 0) this.y = h;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const particleCount = Math.floor((w * h) / 18000);
+            for (let i = 0; i < particleCount; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, w, h);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+    </script>
 </body>
 </html>
